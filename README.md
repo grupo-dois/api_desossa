@@ -10,9 +10,16 @@
 $ npm install
 ```
 
+## Database migration
+
+```bash
+$ npx pisma dev
+```
+
 ## Running the app
 
 ```bash
+
 # development
 $ npm run start
 
