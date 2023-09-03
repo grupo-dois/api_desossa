@@ -25,6 +25,6 @@ model users {
   id      Int    @id @default(autoincrement())
   nome    String
   email   String
-  usuario String
+  usuario String 
   senha   String
 }
