@@ -3,18 +3,18 @@ import { BovinosService } from './bovinos.service';
 import { CreateBovinosDto } from 'src/dtos/create-bovinos-body.dto';
 import { AuthGuard } from 'src/auth/auth.guard';
 
-@Controller() 
+@Controller('bovinos') 
 export class BovinosController {
   constructor(private readonly bovinosService: BovinosService) {}
-  
+
   @UseGuards(AuthGuard)
-  @Get('bovinos')
+  @Get()
   getBovinos() {
     return this.bovinosService.findAllBovinos();
   }
 
   @UseGuards(AuthGuard)
-  @Post('bovinos')
+  @Post()
   postBovinos(@Body() body: CreateBovinosDto){
     return this.bovinosService.addBovinos(body);
   }

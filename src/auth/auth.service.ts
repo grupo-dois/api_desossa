@@ -33,8 +33,4 @@ export class AuthService {
       ),
     };
   }
-
-  async getProfile(username: string) {
-    return await this.usersService.findOneByUsername(username);
-  }
 }

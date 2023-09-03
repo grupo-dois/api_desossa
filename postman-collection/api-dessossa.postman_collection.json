@@ -1,0 +1,146 @@
+{
+	"info": {
+		"_postman_id": "694c586d-2550-4641-9dcd-73695d0c59cb",
+		"name": "api-dessossa",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "784889"
+	},
+	"item": [
+		{
+			"name": "bovinos",
+			"item": [
+				{
+					"name": "bovinos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/bovinos",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"bovinos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bovinos",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"nome\": \"OC498we2\",\r\n        \"data_abate\": 1693447258,\r\n        \"data_desossa\": 1693533658,\r\n        \"raca\": \"nelore\",\r\n        \"peso_carcaca\": 250.2,\r\n        \"responsavel_desossa\": \"Maximiliano Alves\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/bovinos",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"bovinos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"authorization\", `Bearer ${jsonData.access_token}`);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuario\": \"maximiliano\",\r\n    \"senha\": \"maximiliano\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "profile",
+			"item": [
+				{
+					"name": "profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/profile",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
