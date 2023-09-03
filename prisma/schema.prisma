@@ -12,35 +12,19 @@ datasource db {
 }
 
 model bovinos {
-  id                  Int        @id @default(autoincrement())
+  id                  Int    @id @default(autoincrement())
   nome                String
   data_abate          Int
   data_desossa        Int
   raca                String
   peso_carcaca        Float
   responsavel_desossa String
-  dianteiro           dianteiro?
-  traseiro            traseiro?
 }
 
-model dianteiro {
-  nome_produto        String
-  peso                Int
-  preco_custo         Float
-  percent_preco_custo Int
-  preco_venda         Float
-  margem              Int
-  id                  bovinos @relation(fields: [dianteiro_id], references: [id])
-  dianteiro_id        Int     @unique
-}
-
-model traseiro {
-  nome_produto        String
-  peso                Int
-  preco_custo         Float
-  percent_preco_custo Int
-  preco_venda         Float
-  margem              Int
-  id                  bovinos @relation(fields: [traseiro_id], references: [id])
-  traseiro_id         Int     @unique
+model users {
+  id      Int    @id @default(autoincrement())
+  nome    String
+  email   String
+  usuario String
+  senha   String
 }

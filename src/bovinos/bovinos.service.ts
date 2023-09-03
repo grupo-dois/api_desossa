@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/database/prisma.service';
-import { CreateBovinosBody } from 'src/dtos/create-bovinos-body';
+import { CreateBovinosDto } from 'src/dtos/create-bovinos-body.dto';
 
 @Injectable()
 export class BovinosService {
@@ -10,7 +10,7 @@ export class BovinosService {
     return await this.prisma.bovinos.findMany()
   }
 
-  async addBovinos(body: CreateBovinosBody) {
+  async addBovinos(body: CreateBovinosDto) {
     const {
       nome,
       data_abate,

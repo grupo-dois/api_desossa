@@ -1,8 +1,6 @@
 import { IsNotEmpty } from 'class-validator';
-import { CreateDianteiroBody } from './create-dianteiro-body';
-import { CreateTraseiroBody } from './create-traseiro-body';
 
-export class CreateBovinosBody {
+export class CreateBovinosDto {
   @IsNotEmpty()
   nome: string;
   @IsNotEmpty()
@@ -15,6 +13,4 @@ export class CreateBovinosBody {
   peso_carcaca: number;
   @IsNotEmpty()
   responsavel_desossa: string;
-  dianteiro: CreateDianteiroBody;
-  traseiro: CreateTraseiroBody;
 }

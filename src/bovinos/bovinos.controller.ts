@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { BovinosService } from './bovinos.service';
-import { CreateBovinosBody } from 'src/dtos/create-bovinos-body';
+import { CreateBovinosDto } from 'src/dtos/create-bovinos-body.dto';
 
 @Controller() 
 export class BovinosController {
@@ -12,7 +12,7 @@ export class BovinosController {
   }
 
   @Post('bovinos')
-  postBovinos(@Body() body: CreateBovinosBody){
+  postBovinos(@Body() body: CreateBovinosDto){
     return this.bovinosService.addBovinos(body);
   }
 }
