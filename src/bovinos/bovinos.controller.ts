@@ -6,7 +6,7 @@ import { AuthGuard } from 'src/auth/auth.guard';
 @Controller() 
 export class BovinosController {
   constructor(private readonly bovinosService: BovinosService) {}
-
+  
   @UseGuards(AuthGuard)
   @Get('bovinos')
   getBovinos() {

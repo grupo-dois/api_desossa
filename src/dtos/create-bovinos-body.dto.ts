@@ -1,16 +1,16 @@
 import { IsNotEmpty } from 'class-validator';
 
 export class CreateBovinosDto {
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'Campo Nome é obrigatório!' })
   nome: string;
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'Campo Data do abate é obrigatório!' })
   data_abate: number;
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'Campo Data da desossa é obrigatório!' })
   data_desossa: number;
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'Campo Raça é obrigatório!' })
   raca: string;
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'Campo Peso da carcaça é obrigatório!' })
   peso_carcaca: number;
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'Campo Responsável pela desossa é obrigatório!' })
   responsavel_desossa: string;
 }
