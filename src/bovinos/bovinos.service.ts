@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/database/prisma.service';
-import { CreateBovinosDto } from 'src/dtos/create-bovinos-body.dto';
+import { PrismaService } from '../database/prisma.service';
+import { CreateBovinosDto } from '../dtos/create-bovinos-body.dto';
 
 @Injectable()
 export class BovinosService {
@@ -46,7 +46,5 @@ export class BovinosService {
         HttpStatus.BAD_REQUEST,
       );
     }
-
-
   }
 }
