@@ -34,16 +34,21 @@ Quando adicionar o usuario com o nome em branco
 Então o usuario não será cadastrado
 
 Cenário 8: Adicionar um novo usuário com email em branco
-Dado <situação>
-Quando <ação>
+Dado que tenho os dados do usuario
+Quando adicionar o usuario com o email em branco
 Então o usuario não será cadastrado
 
 Cenário 9: Adicionar um novo usuário com a senha em branco
-Dado <situação>
-Quando <ação>
+Dado que tenho os dados do usuario
+Quando adicionar o usuario com o senha em branco
 Então o usuario não será cadastrado
 
-Cenario 10 Realizar a busca de dados ao invés de adicionar um usuário
-Dado quero realizar a busca de um usuário
-Quando tenta realizar a busca
-Então não será possível realizar a busca
+Cenario 10: Realizar a busca de dados de um usuário
+Dado quero realizar a busca de um usuário que estou logado
+Quando realizar a busca
+Então os dados não sensiveis do usuário será retornado
+
+Cenario 11: Adicionar um usuário sem permissão
+Dado que quero adicionar um novo usuario sem permissão para adicionar
+Quando eu adicionar o novo usuário
+Então será informado que não é autorizado adicionar o usuário
