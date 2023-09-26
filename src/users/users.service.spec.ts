@@ -12,7 +12,7 @@ describe('UsersService', () => {
   });
 
   describe('findOneByUsername', () => {
-    it('Cenário 1: Deve retornar um usuário valido.', async () => {
+    it('Cenário 1: Deve retornar um usuário válido.', async () => {
       const expectedResult = {
         id: 1,
         nome: 'Maximiliano',
@@ -25,7 +25,7 @@ describe('UsersService', () => {
       });
     });
 
-    it('Cenário 2: Não deve retornar um usuário.', async () => {
+    it('Cenário 2: Busca por usuário inexistente.', async () => {
       await usersService
         .findOneByUsername('evaristousuarioinvalido')
         .then((result) => {

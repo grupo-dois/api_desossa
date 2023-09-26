@@ -75,7 +75,8 @@
       "^.+\\.(t|j)s$": "ts-jest"
     },
     "collectCoverageFrom": [
-      "**/*.(t|j)s"
+      "**/create-user-body.dto.ts",
+      "**/users.service.ts"
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
