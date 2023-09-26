@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication } from '@nestjs/common';
+import { INestApplication, ValidationPipe } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from '../src/app.module';
 import { faker } from '@faker-js/faker';
@@ -13,6 +13,9 @@ describe('AppController (e2e)', () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
+    app.useGlobalPipes(
+      new ValidationPipe({ transform: true, whitelist: true }),
+    );
     await app.init();
   });
 
@@ -50,10 +53,12 @@ describe('AppController (e2e)', () => {
       .post('/auth/login')
       .send({ nome: 'maximiliano' })
       .set('Accept', 'application/json')
-      .expect(401)
+      .expect(400)
       .then((response) => {
-        expect(response.body.message).toBe('Usuário ou Senha Inválidos');
-        expect(response.body.error).toBe('Unauthorized');
+        expect(response.body.message).toStrictEqual([
+          'Usuário não pode estar vazio',
+          'Senha não pode estar vazia',
+        ]);
       });
   });
 
@@ -80,8 +85,45 @@ describe('AppController (e2e)', () => {
       });
   });
 
+  it('Cenário 6: Adicionar um novo usuário igual de um usuário existente na base', async () => {
+    const auth = await request(app.getHttpServer())
+      .post('/auth/login')
+      .send({ usuario: 'maximiliano', senha: 'maximiliano' })
+      .expect(201);
 
+    const fakerEmail = faker.internet.email()
+    const fakerUsername = faker.internet.userName()
 
+    request(app.getHttpServer())
+      .post('/users/adicionar')
+      .send({
+        nome: faker.person.fullName(),
+        email: fakerEmail,
+        usuario: fakerUsername,
+        senha: faker.internet.password(),
+      })
+      .set('Authorization', `Bearer ${auth.body.access_token}`)
+      .set('Accept', 'application/json')
+      .expect(201)
+      .then((response) => {
+        expect(response.body.user.email).toBe(fakerEmail);
+      });
+
+    return request(app.getHttpServer())
+      .post('/users/adicionar')
+      .send({
+        nome: faker.person.fullName(),
+        email: fakerEmail,
+        usuario: fakerUsername,
+        senha: faker.internet.password(),
+      })
+      .set('Authorization', `Bearer ${auth.body.access_token}`)
+      .set('Accept', 'application/json')
+      .expect(400)
+      .then((response) => {
+        expect(response.body.message).toBe('Nome já existente na base');
+      });
+  });
 
   it('Cenario 11: Adicionar um usuário sem permissão', async () => {
     return request(app.getHttpServer())
@@ -95,7 +137,6 @@ describe('AppController (e2e)', () => {
       .set('Accept', 'application/json')
       .expect(401)
       .then((response) => {
-        console.log(response.body)
         expect(response.body.message).toBe('Unauthorized');
       });
   });

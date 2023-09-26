@@ -30,7 +30,7 @@ export class UsersService {
       return { user };
     } else {
       throw new HttpException(
-        'Nome já existente na base',
+        'Usuário já existente na base',
         HttpStatus.BAD_REQUEST,
       );
     }
