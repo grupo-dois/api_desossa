@@ -4,10 +4,10 @@ import { CreateBovinosDto } from '../dtos/create-bovinos-body.dto';
 
 @Injectable()
 export class BovinosService {
-  constructor(private prisma: PrismaService) { }
+  constructor(private prisma: PrismaService) {}
 
   async findAllBovinos() {
-    return await this.prisma.bovinos.findMany()
+    return await this.prisma.bovinos.findMany();
   }
 
   async findOneBovino(nome: string) {
@@ -15,7 +15,7 @@ export class BovinosService {
       where: {
         nome: nome,
       },
-    })
+    });
   }
 
   async addBovinos(body: CreateBovinosDto) {
@@ -36,10 +36,10 @@ export class BovinosService {
           data_desossa,
           raca,
           peso_carcaca,
-          responsavel_desossa
+          responsavel_desossa,
         }
       })
-      return { bovino, }
+      return { bovino}
     } else {
       throw new HttpException(
         'Nome já existente na base',

@@ -9,7 +9,7 @@ export class UsersController {
 
   @UseGuards(AuthGuard)
   @Post('adicionar')
-  postBovinos(@Body() body: CreateUserDto) {
+  postUsers(@Body() body: CreateUserDto) {
     return this.usersService.addUsers(body);
   }
 }

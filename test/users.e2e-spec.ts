@@ -125,6 +125,94 @@ describe('AppController (e2e)', () => {
       });
   });
 
+  it('Cenário 7: Adicionar um novo usuário com nome em branco', async () => {
+    const auth = await request(app.getHttpServer())
+      .post('/auth/login')
+      .send({ usuario: 'maximiliano', senha: 'maximiliano' })
+      .expect(201);
+
+    return request(app.getHttpServer())
+      .post('/users/adicionar')
+      .send({
+        nome: '',
+        email: faker.internet.email(),
+        usuario: faker.internet.userName(),
+        senha: faker.internet.password(),
+      })
+      .set('Authorization', `Bearer ${auth.body.access_token}`)
+      .set('Accept', 'application/json')
+      .expect(400)
+      .then((response) => {
+        expect(response.body.message[0]).toBe('Nome não pode estar vazio');
+      });
+  });
+
+  it('Cenário 8: Adicionar um novo usuário com email em branco', async () => {
+    const auth = await request(app.getHttpServer())
+      .post('/auth/login')
+      .send({ usuario: 'maximiliano', senha: 'maximiliano' })
+      .expect(201);
+
+    return request(app.getHttpServer())
+      .post('/users/adicionar')
+      .send({
+        nome: faker.person.fullName(),
+        email: '',
+        usuario: faker.internet.userName(),
+        senha: faker.internet.password(),
+      })
+      .set('Authorization', `Bearer ${auth.body.access_token}`)
+      .set('Accept', 'application/json')
+      .expect(400)
+      .then((response) => {
+        expect(response.body.message[0]).toBe('Email não pode estar vazio');
+      });
+  });
+
+  it('Cenário 9: Adicionar um novo usuário com a senha em branco', async () => {
+    const auth = await request(app.getHttpServer())
+      .post('/auth/login')
+      .send({ usuario: 'maximiliano', senha: 'maximiliano' })
+      .expect(201);
+
+    return request(app.getHttpServer())
+      .post('/users/adicionar')
+      .send({
+        nome: faker.person.fullName(),
+        email: faker.internet.email(),
+        usuario: faker.internet.userName(),
+        senha: '',
+      })
+      .set('Authorization', `Bearer ${auth.body.access_token}`)
+      .set('Accept', 'application/json')
+      .expect(400)
+      .then((response) => {
+        expect(response.body.message[0]).toBe('Senha não pode estar vazio');
+      });
+  });
+
+  it('Cenário 10: Realizar a busca de dados de um usuário', async () => {
+    const auth = await request(app.getHttpServer())
+      .post('/auth/login')
+      .send({ usuario: 'maximiliano', senha: 'maximiliano' })
+      .expect(201);
+
+    return request(app.getHttpServer())
+      .get('/users/adicionar')
+      .send({
+        nome: faker.person.fullName(),
+        email: faker.internet.email(),
+        usuario: faker.internet.userName(),
+        senha: '',
+      })
+      .set('Authorization', `Bearer ${auth.body.access_token}`)
+      .set('Accept', 'application/json')
+      .expect(404)
+      .then((response) => {
+        expect(response.body.message).toBe('Cannot GET /users/adicionar');
+      });
+  });
+
   it('Cenario 11: Adicionar um usuário sem permissão', async () => {
     return request(app.getHttpServer())
       .post('/users/adicionar')
