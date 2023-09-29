@@ -68,7 +68,7 @@ describe('AppController (e2e)', () => {
       .send({ usuario: 'maximiliano', senha: 'maximiliano' })
       .expect(201);
 
-    const fakerEmail = faker.internet.email()
+    const fakerEmail = faker.internet.email();
     return request(app.getHttpServer())
       .post('/users/adicionar')
       .send({
@@ -91,8 +91,8 @@ describe('AppController (e2e)', () => {
       .send({ usuario: 'maximiliano', senha: 'maximiliano' })
       .expect(201);
 
-    const fakerEmail = faker.internet.email()
-    const fakerUsername = faker.internet.userName()
+    const fakerEmail = faker.internet.email();
+    const fakerUsername = faker.internet.userName();
 
     request(app.getHttpServer())
       .post('/users/adicionar')
