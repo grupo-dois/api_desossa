@@ -13,7 +13,7 @@ $ npm install
 ## Database migration
 
 ```bash
-$ npx pisma dev
+$ npx prisma migrate dev
 ```
 
 ## Running the app
