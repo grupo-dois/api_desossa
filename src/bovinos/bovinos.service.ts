@@ -10,6 +10,15 @@ export class BovinosService {
     return await this.prisma.bovinos.findMany();
   }
 
+  async groupByDay() {
+    return await this.prisma.bovinos.groupBy({
+      by: 'data_abate',
+      _count: {
+        _all: true,
+     },
+    })
+  }
+
   async findOneBovino(nome: string) {
     return await this.prisma.bovinos.findFirst({
       where: {

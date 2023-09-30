@@ -14,6 +14,12 @@ export class BovinosController {
   }
 
   @UseGuards(AuthGuard)
+  @Get('/abates/diarios')
+  getBovinosAbateDiarios() {
+    return this.bovinosService.groupByDay();
+  }
+
+  @UseGuards(AuthGuard)
   @Post()
   postBovinos(@Body() body: CreateBovinosDto){
     return this.bovinosService.addBovinos(body);
