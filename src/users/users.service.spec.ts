@@ -18,7 +18,7 @@ describe('UsersService', () => {
         nome: 'Maximiliano',
         email: 'maximilianodacruz@gmail.com',
         usuario: 'maximiliano',
-        senha: 'maximiliano'
+        senha: 'maximiliano',
       };
       await usersService.findOneByUsername('maximiliano').then((result) => {
         expect(result.usuario).toBe(expectedResult.usuario);

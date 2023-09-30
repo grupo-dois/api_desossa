@@ -6,3 +6,6 @@ VALUES ('Angus', 20230825, 20230826, 'Hereford', 600.34, 'Max');
 
 INSERT INTO users (nome, email, usuario, senha)
 VALUES ('Henrique Kalife', 'henrique@email.com', 'henrique', '1234');
+
+INSERT INTO users (nome, email, usuario, senha)
+VALUES ('Maximiliano', 'maximilianodacruz@gmail.com', 'maximiliano', 'maximiliano');
