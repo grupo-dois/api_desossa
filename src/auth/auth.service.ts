@@ -28,7 +28,7 @@ export class AuthService {
         { usuario: payload.usuario },
         {
           secret: jwtConstants.SECRET,
-          expiresIn: '120s',
+          expiresIn: '86400s',
         },
       ),
     };
