@@ -34,6 +34,30 @@
 					"response": []
 				},
 				{
+					"name": "bovinos Copy",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/bovinos",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"bovinos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "bovinos",
 					"request": {
 						"method": "POST",
@@ -46,7 +70,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"nome\": \"OC498we2\",\r\n        \"data_abate\": 1693447258,\r\n        \"data_desossa\": 1693533658,\r\n        \"raca\": \"nelore\",\r\n        \"peso_carcaca\": 250.2,\r\n        \"responsavel_desossa\": \"Maximiliano Alves\"\r\n    }",
+							"raw": "{\r\n        \"nome\": \"OC98we2\",\r\n        \"data_abate\": 1693447258,\r\n        \"data_desossa\": 1693533658,\r\n        \"raca\": \"nelore\",\r\n        \"peso_carcaca\": 250.2,\r\n        \"responsavel_desossa\": \"Maximiliano Alves\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -90,7 +114,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"usuario\": \"maximiliano\",\r\n    \"senha\": \"maximiliano\"\r\n}",
+							"raw": "{\r\n    \"usuario\": \"ronaldinhooo\",\r\n    \"senha\": \"ronaldo\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -135,6 +159,45 @@
 							"port": "3000",
 							"path": [
 								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "adicionar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"nome\": \"OC98we2\",\r\n        \"email\": \"ronaldo@ronaldo.com.br\",\r\n        \"usuario\": \"ronaldinhooo\",\r\n        \"senha\": \"ronaldo\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/users/adicionar",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"adicionar"
 							]
 						}
 					},

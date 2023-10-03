@@ -3,6 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import { CreateUserDto } from '../dtos/create-user-body.dto';
 import { UsersService } from '../users/users.service';
 import { jwtConstants } from './constants';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -16,7 +17,8 @@ export class AuthService {
     if (!user) {
       throw new UnauthorizedException('Usuário ou Senha Inválidos');
     }
-    if (user.senha === password) {
+    const isMatch = await bcrypt.compare(password, user.senha);
+    if (isMatch) {
       return await this.gerarToken(user);
     }
     throw new UnauthorizedException('Usuário ou Senha Inválidos');
